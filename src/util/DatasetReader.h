@@ -295,6 +295,7 @@ private:
 	{
 		std::ifstream tr;
 		std::string timesFile = path.substr(0,path.find_last_of('/')) + "/times.txt";
+		std::cout << "timefile:" << timesFile << std::endl << std::flush;
 		tr.open(timesFile.c_str());
 		while(!tr.eof() && tr.good())
 		{
@@ -305,8 +306,13 @@ private:
 			int id;
 			double stamp;
 			float exposure = 0;
+			if(1 == sscanf(buf, "%lf", &stamp))
+			{
+				timestamps.push_back(stamp);
+				exposures.push_back(exposure);
+			}
 
-			if(3 == sscanf(buf, "%d %lf %f", &id, &stamp, &exposure))
+			else if(3 == sscanf(buf, "%d %lf %f", &id, &stamp, &exposure))
 			{
 				timestamps.push_back(stamp);
 				exposures.push_back(exposure);

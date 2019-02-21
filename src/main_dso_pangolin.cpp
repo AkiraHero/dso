@@ -523,6 +523,7 @@ int main( int argc, char** argv )
                     printf("LOST!!\n");
                     break;
             }
+            std::cout << "========frm=======" <<ii <<std::endl;
 
         }
         fullSystem->blockUntilMappingIsFinished();
